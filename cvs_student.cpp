@@ -34,3 +34,10 @@ int cvs_student::get_student_from_stdin(){
 void cvs_student::show_student_to_stout(){
 	std::cout << ID << '\t' << Name << '\t' << Department << '\t'  << (Age+0) << std::endl; 
 }
+
+void  cvs_student::convert_le_be(cvs_student& big_stu){
+	le2be(&ID,&(big_stu.ID),sizeof(uint64_t));
+	memcpy(big_stu.Name,Name,128);
+	memcpy(big_stu.Department, Department,32);
+	big_stu.Age = Age;
+}
